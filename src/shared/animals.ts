@@ -1,5 +1,4 @@
-export const allAnimals=[
-    {
+export const allAnimals = {
     "01-AVESTRUZ":["01","02","03","04"],
     "02-ÁGUIA":["05","06","07","08"],
     "03-BURRO":["09","10","11","12"],
@@ -25,5 +24,4 @@ export const allAnimals=[
     "23-URSO":["89","90","91","92"],
     "24-VEADO":["93","94","95","96"],
     "25-VACA":["97","98","99","00"]
-    }
-];
+};  

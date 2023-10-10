@@ -1,15 +1,17 @@
 import { NextFunction, Request, Response } from "express";
-import { repositoryCustomers } from "../database/customersRepository";
-import { Customer } from "../interface/customers";
+import { userRepository } from "../database/usersRepository";
 
 export const verifyCustomerCPF = (req: Request, res: Response, next: NextFunction) => {
   try {
-    const customerWithSameCPF = repositoryCustomers.find((customer: Customer) => {
-      return req.body.CPF === customer.CPF;
+    const customerWithSameCPF = userRepository.find((customer) => {
+      if ('CPF' in customer) {
+        return req.body.CPF === customer.CPF;
+      }
+      return false; 
     });
 
     if (customerWithSameCPF) {
-      return res.status(409).json({ message: "This customer already exists!" });
+      return res.status(409).json({ message: "this customer already exists!" });
     }
 
     next();

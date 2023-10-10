@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { deleteCustomerService } from "../../services/customers/deleteCustomer.service";
+import { deleteCustomerService } from "../../services/users/customers/deleteCustomer.service";
 
 export const deleteCustomerController = async (req: Request, res: Response) => {
   try {

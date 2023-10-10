@@ -1,17 +1,17 @@
 import { Request, Response } from "express";
-import { repositoryCustomers } from "../../database/customersRepository";
+import { userRepository } from "../../../database/usersRepository";
 
 export const deleteCustomerService = async (req: Request, res: Response) => {
   try {
     const customerId: number = parseInt(req.params.id);
 
-    const existingCustomerIndex: number = repositoryCustomers.findIndex((customer) => customer.id === customerId);
+    const existingCustomerIndex: number = userRepository.findIndex((customer) => customer.id === customerId);
 
     if (existingCustomerIndex === -1) {
-      return res.status(404).json({ message: "Customer not found" });
+      return res.status(404).json({ message: "customer not found" });
     }
 
-    repositoryCustomers.splice(existingCustomerIndex, 1);
+    userRepository.splice(existingCustomerIndex, 1);
 
     return res.status(204).send(); 
   } catch (e:any) {

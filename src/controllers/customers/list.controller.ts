@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
-import { listAllCustomers } from "../../services/customers/listAll.service";
-import { listCustomerID } from "../../services/customers/listCustomerID.service";
+import { listAllCustomers } from "../../services/users/customers/listAll.service";
+import { listCustomerID } from "../../services/users/customers/listCustomerID.service";
 
 export const listAllController = async (req: Request, res: Response) => {
   try {

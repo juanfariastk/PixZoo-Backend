@@ -5,19 +5,20 @@ import { listAllController, listIDController } from "../../controllers/customers
 import { updateCustomerController } from "../../controllers/customers/update.controller";
 import { generateCustomerId } from "../../middlewares/verifyAndGenerateID.middleware";
 import { verifyCustomerCPF } from "../../middlewares/verifyCPF.middleware";
+import { verifyUserEmail } from "../../middlewares/verifyEmailUsers.middleware";
 
 const router = Router();
 
-export const customersPlayersRoutes = (app: Application) => {
-  router.post("/customers", generateCustomerId, verifyCustomerCPF, createCustomerController);
+export const usersRoutes = (app: Application) => {
+  router.post("/users", generateCustomerId, verifyUserEmail,verifyCustomerCPF, createCustomerController);
 
-  router.get("/customers", listAllController);
+  router.get("/users", listAllController);
 
-  router.get("/customers/:id", listIDController);
+  router.get("/users/:id", listIDController);
 
-  router.put("/customers/:id", updateCustomerController);
+  router.put("/users/:id", updateCustomerController);
 
-  router.delete("/customers/:id", deleteCustomerController);
+  router.delete("/users/:id", deleteCustomerController);
 
   app.use(router);
 };

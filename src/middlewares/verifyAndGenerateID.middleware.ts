@@ -1,15 +1,16 @@
 import { NextFunction, Request, Response } from "express";
-import { repositoryCustomers } from "../database/customersRepository";
-import { Customer } from "../interface/customers";
+import { userRepository } from "../database/usersRepository";
+import { User } from "../interface/user";
 
 const calculateNextCustomerId = () => {
-  if (repositoryCustomers.length === 0) {
+  if (userRepository.length === 0) {
     return 1;
   } else {
-    const lastCustomer:Customer = repositoryCustomers[repositoryCustomers.length - 1];
+    const lastCustomer:User = userRepository[userRepository.length - 1];
     return lastCustomer.id + 1;
   }
 };
+
 export const generateCustomerId= ( req: Request, res: Response, next: NextFunction ) => {
   try {
     const nextCustomerId = calculateNextCustomerId();
