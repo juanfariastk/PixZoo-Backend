@@ -10,9 +10,9 @@ export const createSessionService = async (req: Request, res: Response) => {
     const actualDateTime = DateTime.now().setZone('America/Sao_Paulo'); 
 
     const newSession: LoginSession = {
-      "userEmail": receivedCustomer.email,
-      "openedAt": actualDateTime.toFormat('dd/MM/yyyy HH:mm:ss'), 
-      "userType": req.body.userType
+      userEmail: receivedCustomer.email,
+      openedAt: actualDateTime.toFormat('dd/MM/yyyy HH:mm:ss'), 
+      userType: req.body.userType
     };
 
     sessionRepository.push(newSession);

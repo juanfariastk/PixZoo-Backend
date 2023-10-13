@@ -1,7 +1,10 @@
 import { Request, Response } from "express";
+import { DateTime } from "luxon";
+import { paymentsRepository } from "../../database/paymentsRepository";
 import { userRepository } from "../../database/usersRepository";
 import { Administrator } from "../../interface/administrator";
 import { Customer } from "../../interface/customers";
+import { Payment } from '../../interface/payment';
 import { User } from "../../interface/user";
 
 export const createUserService = async (req: Request, res: Response) => {
@@ -19,6 +22,19 @@ export const createUserService = async (req: Request, res: Response) => {
         amountDeposited: receivedUser.amountDeposited ? receivedUser.amountDeposited : 0,
       };
 
+      const actualDateTime = DateTime.now().setZone('America/Sao_Paulo'); 
+
+      if(receivedUser.amountDeposited){
+        const newPayment:Payment = {
+          userID:req.body.id as number,
+          userCPF:receivedUser.CPF,
+          value:receivedUser.amountDeposited,
+          date:actualDateTime.toString()
+        }
+
+        paymentsRepository.push(newPayment);
+
+      }
       userRepository.push(newCustomer);
 
       return res.status(201).json(newCustomer);

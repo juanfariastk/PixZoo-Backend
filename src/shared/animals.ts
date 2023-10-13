@@ -1,4 +1,6 @@
-export const allAnimals = {
+import { AnimalData } from "../interface/animal";
+
+export const allAnimals:AnimalData = {
     "01-AVESTRUZ":["01","02","03","04"],
     "02-ÁGUIA":["05","06","07","08"],
     "03-BURRO":["09","10","11","12"],
