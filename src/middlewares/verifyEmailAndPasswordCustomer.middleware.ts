@@ -9,7 +9,7 @@ export const verifyEmailAndPassword = (req: Request, res: Response, next: NextFu
     });
 
     if (!customerVerified) {
-      return res.status(409).json({ message: "email or password invalid!" });
+      return res.status(401).json({ message: "email or password invalid!" });
     }
 
     next();
