@@ -4,6 +4,7 @@ export type Login = {
 }
 
 export type LoginSession = {
+    "userId"?:number;
     "userEmail":string;
     "openedAt":string;
     "userType":string;
